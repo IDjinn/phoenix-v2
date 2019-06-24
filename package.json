@@ -1,0 +1,27 @@
+{
+  "name": "fenix-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "author": "Djinn",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "form-data": "^2.4.0",
+    "fs": "0.0.1-security",
+    "giphy-api": "^2.0.1",
+    "html": "^1.0.0",
+    "milisegundos": "^1.0.5",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.20",
+    "node-fetch": "^2.6.0",
+    "path": "^0.12.7",
+    "string-similarity": "^3.0.0"
+  }
+}
