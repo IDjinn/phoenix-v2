@@ -1,7 +1,9 @@
 module.exports = {
-    token: 'seu token',
-    prefixo: 'n!',
+    token: "",
+    prefix: '>',
+    nome: 'Phoenix',
     mongoose: {
         login: ''
-    }
+    },
+    donos: []
 }

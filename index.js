@@ -7,7 +7,9 @@ const EventosManager = require('./managers/eventos.js');
 const UsersManager = require('./managers/usuarios.js');
 const TempRoleManager = require('./managers/temprole.js');
 const ReactionRoleManager = require('./managers/reactionrole.js');
+const BackupManager = require('./managers/backup.js');
 const App = require('./app.js');
+
 module.exports = { Comando: require('./estruturas/comando.js') }
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -36,6 +38,7 @@ new class Phoenix extends Client{
     this.comandosManager = await new ComandosManager(this);
     this.tempRoleManager = await new TempRoleManager(this);
     this.reactionRoleManager = await new ReactionRoleManager(this);
+    this.backupManager = await new BackupManager(this);
     //this.app = await new App(this);
 
     await sleep(3000);
