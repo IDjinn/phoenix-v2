@@ -39,7 +39,7 @@ new class Phoenix extends Client{
     this.reactionRoleManager = await new ReactionRoleManager(this);
     this.backupManager = await new BackupManager(this);
 
-    await sleep(3000);
+    await sleep(5000);
     this.eventosManager = await new EventosManager(this);
     
     console.log(`Conectado com sucesso ${this.user.tag}!`);

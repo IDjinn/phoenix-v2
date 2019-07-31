@@ -10,7 +10,7 @@ module.exports = class EventosManager {
             const servidor = this.client.getServidor(message.guild.id);
             
             client.comando(message);
-            servidor.moderacao.filtrarMensagem(message);
+            servidor.moderacao.onMessage(message);
         });
         this.client.on('memberUpdate', member => {
             this.client.getServidor(member.guild.id).logger.memberUpdated(member);
@@ -28,7 +28,7 @@ module.exports = class EventosManager {
             this.client.getServidor(antiga.guild.id).logger.roleUpdated(antiga, nova);
         });
         this.client.on('channelDelete', channel => {
-            const servidor = this.client.getServidor(member.guild.id);
+            const servidor = this.client.getServidor(channel.guild.id);
             servidor.contador.atualizar();
             servidor.logger.channelDeleted(channel);
         });
@@ -38,7 +38,7 @@ module.exports = class EventosManager {
         this.client.on('channelCreate', channel => {
             const servidor = this.client.getServidor(channel.guild.id);
             servidor.contador.atualizar();
-            servidor.logger.chanelCreated(channel);
+            servidor.logger.channelCreated(channel);
         });
         this.client.on('messageDelete', message => {
             const servidor = this.client.getServidor(message.guild.id);
@@ -47,23 +47,23 @@ module.exports = class EventosManager {
         this.client.on('messageUpdate', (antiga, nova) => {
             if(!antiga.content || !nova.content) return;
             this.client.getServidor(antiga.guild.id).logger.messageUpdated(antiga, nova);
-        });
+        });/*
         this.client.on('raw', raw => {
             if (raw.t === 'MESSAGE_REACTION_ADD' || raw.t == "MESSAGE_REACTION_REMOVE")
                 this.client.reactionRoleManager.onReaction(raw, this.client);
-        });
+        });*/
         this.client.on('guildMemberAdd', member => {
             const servidor = this.client.getServidor(member.guild.id);
-            servidor.contador.atualizar();
+            servidor.contador.atualizar();/*
             servidor.moderacao.mencionavel(member);
-            servidor.moderacao.antiZalgo(member);
+            servidor.moderacao.antiZalgo(member);*/
             servidor.welcome.onMemberJoin(member);
         });
         this.client.on('guildMemberRemove', member => {
             let servidor = this.client.getServidor(member.guild.id);
 
             servidor.contador.atualizar();
-            servidor.welcome.onMemberLeave(member);
+            //servidor.welcome.onMemberLeave(member);
         });
         this.ready();
     }
