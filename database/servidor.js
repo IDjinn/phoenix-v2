@@ -210,9 +210,19 @@ const Servidores = new Schema({
                 type: Boolean,
                 default: false
             },
-            autowarn: {
-                type: Boolean,
-                default: false
+            warn: {
+                enabled: {
+                    type: Boolean,
+                    default: false
+                },
+                max: {
+                    type: Number,
+                    default: 1
+                },
+                actions: {
+                    type: Array,
+                    default: ['KICK','BAN']
+                }
             },
             whitelist: {
                 type: Array,
@@ -235,6 +245,28 @@ const Servidores = new Schema({
             blacklist: {
                 type: Array,
                 default: []
+            }
+        },
+        nome:{
+            mencionavel: {
+                enabled: {
+                    type: Boolean,
+                    default: false
+                },
+                rename: {
+                    type: Boolean,
+                    default: false
+                }
+            },
+            zalgo: {
+                enabled: {
+                    type: Boolean,
+                    default: false
+                },
+                percent: {
+                    type: Number,
+                    default: 50
+                }
             }
         },
         globalbans: {

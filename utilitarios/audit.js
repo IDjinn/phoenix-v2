@@ -34,7 +34,7 @@ else if(log.action == 'CHANNEL_UPDATE'){
         title = "Texto";           
     }           
     else if (channel.type === 'voice') {
-             title = "Voz";
+        title = "Voz";
     }
     let alterado = ""
     for(let c in log.changes){               
@@ -97,8 +97,8 @@ module.exports.roles = (role, log) => {
             let novo = "" + log.changes[c].new;               
             let tipo = "" + log.changes[c].key;               
             if(log.changes[c].key == 'permissions'){
-                var antigas = permsUtil.converterPermissoes(log.changes[c].old,true);
-                var novas = permsUtil.converterPermissoes(log.changes[c].new,true);
+                var antigas = log.changes[c].old //permsUtil.converterPermissoes(log.changes[c].old,true);
+                var novas = log.changes[c].new//permsUtil.converterPermissoes(log.changes[c].new,true);
                 let antes = "", depois = "";
                 for(let n in novas){
                     if(novas[n].permitido && antigas[n].permitido) continue;

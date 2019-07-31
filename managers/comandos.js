@@ -47,8 +47,8 @@ module.exports = class CommandManager{
                             if(cmd.userHasPermission(message))
                                 if(cmd.botHasPermission(message))
                                     cmd.run(message.client, message, args);
-                                else message.channel.send(new ComandoBotSemPermissao(cmd, permsBot));
-                            else message.channel.send(new ComandoSemPermissao(cmd, perms));
+                                else message.channel.send(new ComandoBotSemPermissao(cmd, permissaoBot));
+                            else message.channel.send(new ComandoSemPermissao(cmd, cmd.permissoes));
                         else message.channel.send(new ComandoDesativado(cmd));
                     }
                     catch (erro){

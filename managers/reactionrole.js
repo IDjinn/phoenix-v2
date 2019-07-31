@@ -20,6 +20,7 @@ module.exports = class ReactionRoleManager {
         let tipo = reaction.t == 'MESSAGE_REACTION_ADD' ? true : false;
         reaction = reaction.d;
         let ReactionRole = this.roles[reaction.message_id];
+        if(!ReactionRole) return;   
         let emoji = reaction.emoji.id ? reaction.emoji.id : reaction.emoji.name;
         if(ReactionRole.emoji == emoji && ReactionRole.canal == reaction.channel_id && ReactionRole.servidor == reaction.guild_id){
             let guild = await client.guilds.get(reaction.guild_id);

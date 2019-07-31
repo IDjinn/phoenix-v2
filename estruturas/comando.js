@@ -17,14 +17,21 @@ module.exports = class Comando {
     userHasPermission(message){
         if(!message) return false;
         else if(this.permissoes.length == 0) return true;
-        this.permissoes.forEach(permissao => {
-            if(message.member.hasPermission(permissao)) return true;
+        else if(message.member.hasPermission("ADMINISTRATOR")) return true;
+        this.permissoes.forEach(async permissao => {
+            if(permissao == 'MOD') 
+                return await this.client.getServidor(message.id).permissoes.isMod(message.member);
+            else if(permissao == 'ADM') 
+                return await this.client.getServidor(message.id).permissoes.isAdm(message.member);
+            else if(message.member.hasPermission(permissao)) 
+                return true;
         });
         return false;
     }
     botHasPermission(message){
         if(!message) return false;
         else if(this.permissaoBot.length == 0) return true;
+        else if(message.member.hasPermission("ADMINISTRATOR")) return true;
         this.permissaoBot.forEach(permissao => {
             if(!message.guild.me.hasPermission(permissao)) return permissao;
         });

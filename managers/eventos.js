@@ -38,7 +38,6 @@ module.exports = class EventosManager {
         this.client.on('channelCreate', channel => {
             const servidor = this.client.getServidor(channel.guild.id);
             servidor.contador.atualizar();
-            
             servidor.logger.chanelCreated(channel);
         });
         this.client.on('messageDelete', message => {
@@ -56,6 +55,8 @@ module.exports = class EventosManager {
         this.client.on('guildMemberAdd', member => {
             const servidor = this.client.getServidor(member.guild.id);
             servidor.contador.atualizar();
+            servidor.moderacao.mencionavel(member);
+            servidor.moderacao.antiZalgo(member);
             servidor.welcome.onMemberJoin(member);
         });
         this.client.on('guildMemberRemove', member => {

@@ -42,9 +42,7 @@ new class Phoenix extends Client{
     await sleep(3000);
     this.eventosManager = await new EventosManager(this);
     
-    this.on('ready', async () => {
-      console.log(`Conectado com sucesso ${this.user.tag}!`);
-    });
+    console.log(`Conectado com sucesso ${this.user.tag}!`);
   }
 }
 

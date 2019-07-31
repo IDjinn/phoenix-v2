@@ -1,5 +1,14 @@
 const { RichEmbed } = require('discord.js');
 
+module.exports.SimpleEmbed = class SimpleEmbed extends RichEmbed {
+    constructor(mensagem){
+        super();
+        this.setDescription(`${mensagem}`);
+        this.setTimestamp();
+        this.setColor('#ffffff');
+    }
+}
+
 module.exports.ComandoDesativado = class ComandoDesativado extends RichEmbed {
     constructor(comando){
         super();

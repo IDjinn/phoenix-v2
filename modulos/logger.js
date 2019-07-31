@@ -7,95 +7,95 @@ module.exports = class Logger {
     }
     async getAuditLog(object, type){
         if(object.guild)
-            return await object.guild.fetchAuditLogs({type: type}).then(audit => audit.entries.first());
+            return await object.guild.fetchAuditLogs({type: type}).then(audit => audit.entries.first()).catch();
         else 
-            return await object.fetchAuditLogs({type: type}).then(audit => audit.entries.first());
+            return await object.fetchAuditLogs({type: type}).then(audit => audit.entries.first()).catch();
     }
     async roleCreated(role){
         if(this.logger.roleCreated.enabled){
             if(!role.guild.me.hasPermission('VIEW_AUDIT_LOG'))
-                this.guild.channels.get(this.logger.roleCreated.channel).send(new roleCreated(antiga, novo));
+                this.guild.channels.get(this.logger.roleCreated.channel).send(new roleCreated(antiga, novo)).catch();
             else {
                 let log = await this.getAuditLog(role, 'ROLE_CREATE');
-                this.guild.channels.get(this.logger.roleCreated.channel).send(await roles(role, log));
+                this.guild.channels.get(this.logger.roleCreated.channel).send(await roles(role, log)).catch();
             }
         }
     }
     async roleDeleted(role){
         if(this.logger.roleDeleted.enabled){
             if(!role.guild.me.hasPermission('VIEW_AUDIT_LOG'))
-                this.guild.channels.get(this.logger.roleDeleted.channel).send(new roleDeleted(antiga, novo));
+                this.guild.channels.get(this.logger.roleDeleted.channel).send(new roleDeleted(antiga, novo)).catch();
             else {
                 let log = await this.getAuditLog(role, 'ROLE_DELETE');
-                this.guild.channels.get(this.logger.roleDeleted.channel).send(await roles(role, log));
+                this.guild.channels.get(this.logger.roleDeleted.channel).send(await roles(role, log)).catch();
             }
         }
     }
     async roleUpdated(antiga, novo){
         if(this.logger.roleUpdated.enabled){
             if(!antiga.guild.me.hasPermission('VIEW_AUDIT_LOG'))
-                this.guild.channels.get(this.logger.roleUpdated.channel).send(new roleUpdated(antiga, novo));
+                this.guild.channels.get(this.logger.roleUpdated.channel).send(new roleUpdated(antiga, novo)).catch();
             else {
                 let log = await this.getAuditLog(antiga, 'ROLE_UPDATE');
-                this.guild.channels.get(this.logger.roleUpdated.channel).send(await roles(antiga, log));
+                this.guild.channels.get(this.logger.roleUpdated.channel).send(await roles(antiga, log)).catch();
             }
         }
     }
     async memberUpdated(antigo, novo){
         if(this.logger.memberUpdated.enabled){
             if(!antigo.guild.me.hasPermission('VIEW_AUDIT_LOG'))
-                this.guild.channels.get(this.logger.memberUpdated.channel).send(new memberUpdated(antigo, novo));
+                this.guild.channels.get(this.logger.memberUpdated.channel).send(new memberUpdated(antigo, novo)).catch();
             else {
                 let log = await this.getAuditLog(antigo, 'MEMBER_UPDATE');
-                this.guild.channels.get(this.logger.memberUpdated.channel).send(await members(antigo, log));
+                this.guild.channels.get(this.logger.memberUpdated.channel).send(await members(antigo, log)).catch();
             }
         }
     }
     async guildUpdated(antiga, nova){
         if(this.logger.guildUpdated.enabled){
             if(!antiga.me.hasPermission('VIEW_AUDIT_LOG'))
-                this.guild.channels.get(this.logger.guildUpdated.channel).send(new guildUpdated(antiga, nova));
+                this.guild.channels.get(this.logger.guildUpdated.channel).send(new guildUpdated(antiga, nova)).catch();
             else {
                 let log = await this.getAuditLog(antiga, 'GUILD_UPDATE');
-                this.guild.channels.get(this.logger.guildUpdated.channel).send(await guilds(antiga, log));
+                this.guild.channels.get(this.logger.guildUpdated.channel).send(await guilds(antiga, log)).catch();
             }
         }
     }
     messageDeleted(message){
         if(this.logger.messageDeleted.enabled)
-            this.guild.channels.get(this.logger.messageDeleted.channel).send(new messageDeleted(message));
+            this.guild.channels.get(this.logger.messageDeleted.channel).send(new messageDeleted(message)).catch();
     }
     messageUpdated(antiga, nova){
         if(this.logger.messageUpdated.enabled && antiga.content != nova.content)
-            this.guild.channels.get(this.logger.messageUpdated.channel).send(new messageUpdated(antiga, nova));
+            this.guild.channels.get(this.logger.messageUpdated.channel).send(new messageUpdated(antiga, nova)).catch();
     }
     async channelCreated(channel){
         if(this.logger.channelCreated.enabled){
             if(!channel.guild.me.hasPermission('VIEW_AUDIT_LOG'))
-                this.guild.channels.get(this.logger.channelCreated.channel).send(new channelCreated(channel));
+                this.guild.channels.get(this.logger.channelCreated.channel).send(new channelCreated(channel)).catch();
             else {
                 let log = await this.getAuditLog(channel, 'CHANNEL_CREATE');
-                this.guild.channels.get(this.logger.channelCreated.channel).send(await channels(channel, log));
+                this.guild.channels.get(this.logger.channelCreated.channel).send(await channels(channel, log)).catch();
             }
         }
     }
     async channelDeleted(channel){
         if(this.logger.channelDeleted.enabled){
             if(!channel.guild.me.hasPermission('VIEW_AUDIT_LOG'))
-                this.guild.channels.get(this.logger.channelDeleted.channel).send(new channelDeleted(channel));
+                this.guild.channels.get(this.logger.channelDeleted.channel).send(new channelDeleted(channel)).catch();
             else {
                 let log = await this.getAuditLog(channel, 'CHANNEL_DELETE');
-                this.guild.channels.get(this.logger.channelDeleted.channel).send(await channels(channel, log));
+                this.guild.channels.get(this.logger.channelDeleted.channel).send(await channels(channel, log)).catch();
             }
         }
     }
     async channelUpdated(channel){
         if(this.logger.channelUpdated.enabled){
             if(!channel.guild.me.hasPermission('VIEW_AUDIT_LOG'))
-                this.guild.channels.get(this.logger.channelUpdated.channel).send(new channelUpdated(channel));
+                this.guild.channels.get(this.logger.channelUpdated.channel).send(new channelUpdated(channel)).catch();
             else {
-                let log = await this.getAuditLog(channel, 'CHANEL_UPDATE');
-                this.guild.channels.get(this.logger.channelUpdated.channel).send(await channels(channel, log));
+                let log = await this.getAuditLog(channel, 'CHANNEL_UPDATE');
+                this.guild.channels.get(this.logger.channelUpdated.channel).send(await channels(channel, log)).catch();
             }
         }
     }
